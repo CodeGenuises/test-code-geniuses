@@ -20,8 +20,8 @@
         }
         /* Header styles */
         header {
-            background-color: white;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            background-color: #00128b;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
             left: 0;
@@ -32,25 +32,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.5rem 1rem;
+            padding: 1rem;
         }
         .logo {
-            width: 90px;
-            height: 90px;
+            width: 120px;
+            height: 120px;
         }
         .nav-links {
             display: none;
         }
         .nav-links a {
-            color: #1e3a8a;
+            color: #f4f4f4;
             text-decoration: none;
-            margin-left: 2rem;
+            margin-left: 2.5rem;
+            font-size: 1.1rem;
         }
         .nav-links a:hover {
-            color: #1e40af;
+            color: #ffffff;
         }
         .menu-button {
             display: block;
+            font-size: 1.1rem;
+            color: #f4f4f4;
         }
         /* Hero section styles */
         .hero {
@@ -79,7 +82,7 @@
             gap: 1rem;
         }
         .cta-primary {
-            background-color: #2563eb;
+            background-color: #00128b;
             color: white;
             padding: 0.75rem 2rem;
             border-radius: 9999px;
@@ -88,13 +91,13 @@
             transition: background-color 0.3s;
         }
         .cta-primary:hover {
-            background-color: #1d4ed8;
+            background-color: #001bb8;
         }
         .cta-secondary {
             background-color: white;
-            color: #2563eb;
+            color: #00128b;
             padding: 0.75rem 2rem;
-            border: 2px solid #2563eb;
+            border: 2px solid #00128b;
             text-decoration: none;
             font-weight: 600;
             transition: background-color 0.3s;
@@ -149,7 +152,12 @@
         }
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        .services-column {
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
         }
         .service-card {
@@ -158,6 +166,7 @@
             border-radius: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             transition: box-shadow 0.3s;
+            height: 100%;
         }
         .service-card:hover {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -165,7 +174,7 @@
         .service-icon {
             width: 3rem;
             height: 3rem;
-            color: #2563eb;
+            color: #00128b;
             margin-bottom: 1rem;
         }
         .service-title {
@@ -192,7 +201,7 @@
         }
         /* Contact banner styles */
         .contact-banner {
-            background-color: #2563eb;
+            background-color: #00128b;
             padding: 8rem 1rem;
             text-align: center;
             position: relative;
@@ -224,7 +233,7 @@
         .contact-cta {
             display: inline-block;
             background-color: white;
-            color: #2563eb;
+            color: #00128b;
             padding: 1rem 3rem;
             border-radius: 9999px;
             text-decoration: none;
@@ -290,11 +299,21 @@
         }
         .works-container {
             overflow: hidden;
+            position: relative;
         }
         .works-slider {
             display: flex;
             gap: 1.5rem;
-            width: 200%;
+            animation: scroll 30s linear infinite;
+            width: max-content;
+        }
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-18rem * 3 - 1.5rem * 3)); /* Width of 3 items + gaps */
+            }
         }
         .work-item {
             flex: 0 0 18rem;
@@ -424,6 +443,129 @@
             .about-text {
                 width: 50%;
             }
+            .services-grid {
+                display: grid;
+                grid-template-columns: 3fr 2fr;
+                gap: 2rem;
+            }
+            .works-slider {
+                animation: scroll 40s linear infinite;
+            }
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-18rem * 6 - 1.5rem * 6)); /* Width of 6 items + gaps */
+                }
+            }
+        }
+        /* Modal styles */
+        .modal-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-container.show {
+            display: flex;
+        }
+        
+        .modal {
+            background-color: white;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: modalAppear 0.3s ease-out forwards;
+        }
+        
+        .modal-content {
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #4b5563;
+            transition: color 0.3s;
+        }
+        
+        .close-button:hover {
+            color: #1e3a8a;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-description {
+            color: #4b5563;
+        }
+        
+        .modal-description h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin: 1.5rem 0 0.5rem;
+        }
+        
+        .modal-description ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .modal-description li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Spiral animation for text */
+        .spiral-text {
+            opacity: 0;
+            transform: scale(0.5) rotate(-10deg);
+            transform-origin: center left;
+        }
+        
+        .spiral-text.animate {
+            animation: spiralIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        @keyframes spiralIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
         }
     </style>
 </head>
@@ -437,7 +579,7 @@
                 <a href="#recent-works">Recent Works</a>
                 <a href="/contact">Contact</a>
             </div>
-            <button class="menu-button">Menu</button>
+            <button class="menu-button">☰ Menu</button>
         </nav>
     </header>
 
@@ -474,46 +616,50 @@
             <div class="container">
                 <h2>Our Services</h2>
                 <div class="services-grid">
-                    <div class="service-card">
-                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                        <h3 class="service-title">Responsive Web Design</h3>
-                        <p class="service-description">We create websites that look and function beautifully on all devices, ensuring a seamless user experience across desktops, tablets, and smartphones.</p>
-                        <a href="#" class="view-more">View More</a>
+                    <div class="services-column">
+                        <div class="service-card">
+                            <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <h3 class="service-title">Responsive Web Design</h3>
+                            <p class="service-description">We create websites that look and function beautifully on all devices, ensuring a seamless user experience across desktops, tablets, and smartphones.</p>
+                            <a href="#" class="view-more">View More</a>
+                        </div>
+                        <div class="service-card">
+                            <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                            </svg>
+                            <h3 class="service-title">UI/UX Design</h3>
+                            <p class="service-description">Our expert designers craft intuitive and visually appealing interfaces that engage users and enhance the overall user experience of your digital products.</p>
+                            <a href="#" class="view-more">View More</a>
+                        </div>
+                        <div class="service-card">
+                            <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                            <h3 class="service-title">Custom Web Applications</h3>
+                            <p class="service-description">We develop tailor-made web applications that address your specific business needs, streamlining processes and boosting productivity.</p>
+                            <a href="#" class="view-more">View More</a>
+                        </div>
                     </div>
-                    <div class="service-card">
-                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                        </svg>
-                        <h3 class="service-title">UI/UX Design</h3>
-                        <p class="service-description">Our expert designers craft intuitive and visually appealing interfaces that engage users and enhance the overall user experience of your digital products.</p>
-                        <a href="#" class="view-more">View More</a>
-                    </div>
-                    <div class="service-card">
-                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                        </svg>
-                        <h3 class="service-title">Custom Web Applications</h3>
-                        <p class="service-description">We develop tailor-made web applications that address your specific business needs, streamlining processes and boosting productivity.</p>
-                        <a href="#" class="view-more">View More</a>
-                    </div>
-                    <div class="service-card">
-                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <h3 class="service-title">Maintenance & Support</h3>
-                        <p class="service-description">Our dedicated team provides ongoing maintenance and support to ensure your website remains up-to-date, secure, and performs optimally at all times.</p>
-                        <a href="#" class="view-more">View More</a>
-                    </div>
-                    <div class="service-card">
-                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <h3 class="service-title">Web Security</h3>
-                        <p class="service-description">We implement state-of-the-art security measures to protect your website and user data from potential threats and vulnerabilities.</p>
-                        <a href="#" class="view-more">View More</a>
+                    <div class="services-column">
+                        <div class="service-card">
+                            <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <h3 class="service-title">Maintenance & Support</h3>
+                            <p class="service-description">Our dedicated team provides ongoing maintenance and support to ensure your website remains up-to-date, secure, and performs optimally at all times.</p>
+                            <a href="#" class="view-more">View More</a>
+                        </div>
+                        <div class="service-card">
+                            <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <h3 class="service-title">Web Security</h3>
+                            <p class="service-description">We implement state-of-the-art security measures to protect your website and user data from potential threats and vulnerabilities.</p>
+                            <a href="#" class="view-more">View More</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -543,7 +689,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                         </svg>
                         <h3 class="process-title">Development</h3>
-                        <p class="process-description">Our team brings your vision to life with cutting-edge technologies.</p>
+                        <p class="process-description">Our team brings your vision to life with                        <p class="process-description">Our team brings your vision to life with cutting-edge technologies.</p>
                     </div>
                     <div class="process-step">
                         <svg class="process-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -571,6 +717,7 @@
                 <h2>Recent Works</h2>
                 <div class="works-container">
                     <div class="works-slider">
+                        <!-- Original items -->
                         <div class="work-item">
                             <img src="/l'artisan ayisyen off slog.jpg" alt="L'Artisan Ayisyen Boulangerie" class="work-image">
                             <div class="work-overlay">
@@ -595,7 +742,32 @@
                                 <a href="#" class="work-link">View Project</a>
                             </div>
                         </div>
-                        <!-- Repeat work items to fill the slider -->
+
+                        <!-- Duplicate items for infinite loop -->
+                        <div class="work-item">
+                            <img src="/l'artisan ayisyen off slog.jpg" alt="L'Artisan Ayisyen Boulangerie" class="work-image">
+                            <div class="work-overlay">
+                                <h3 class="work-title">L'Artisan Ayisyen Boulangerie</h3>
+                                <p class="work-description">A modern e-commerce site for a local bakery, featuring online ordering and delivery options.</p>
+                                <a href="https://codegenuises.github.io/L-artisan-Ayisyen/" class="work-link" target="_blank" rel="noopener noreferrer">View Project</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <img src="/zstrore1.jpeg" alt="Z Brand Collection" class="work-image">
+                            <div class="work-overlay">
+                                <h3 class="work-title">Z Brand Collection</h3>
+                                <p class="work-description">A sleek fashion brand website with an integrated shopping experience.</p>
+                                <a href="https://kzmg29v0g6yy0pn8p75d.lite.vusercontent.net" class="work-link" target="_blank" rel="noopener noreferrer">View Project</a>
+                            </div>
+                        </div>
+                        <div class="work-item">
+                            <img src="/dental.jpeg" alt="Smile Bright Dental" class="work-image">
+                            <div class="work-overlay">
+                                <h3 class="work-title">Smile Bright Dental</h3>
+                                <p class="work-description">A user-friendly website for a dental clinic with online booking.</p>
+                                <a href="#" class="work-link">View Project</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -609,7 +781,7 @@
                     <h3>CodeGeniuses & Co.</h3>
                     <p>Port-au-Prince, Haiti</p>
                     <p>Phone: +509 34597618</p>
-                    <p>Email: info@codegeniuses.com</p>
+                    <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="244d4a424b64474b404143414a4d515741570a474b49">[email&#160;protected]</a></p>
                 </div>
                 <div class="footer-section">
                     <h3>Useful Links</h3>
@@ -646,5 +818,160 @@
             </div>
         </div>
     </footer>
+
+    <div id="modal-container" class="modal-container">
+        <div class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h3 id="modal-title" class="modal-title"></h3>
+                <div id="modal-description" class="modal-description"></div>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        // Modal functionality
+        const modalContainer = document.getElementById('modal-container');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const closeButton = document.querySelector('.close-button');
+
+        // Service details content
+        const serviceDetails = {
+            'Responsive Web Design': `
+                <p class="spiral-text">Our responsive web design service ensures your website looks and functions perfectly on all devices - from desktop computers to smartphones and tablets.</p>
+                <p class="spiral-text">We use modern techniques like fluid grids, flexible images, and CSS media queries to create layouts that automatically adjust to the user's screen size.</p>
+                <p class="spiral-text">Benefits include:</p>
+                <ul>
+                    <li class="spiral-text">Improved user experience across all devices</li>
+                    <li class="spiral-text">Better search engine rankings (Google prioritizes mobile-friendly sites)</li>
+                    <li class="spiral-text">Increased conversion rates and lower bounce rates</li>
+                    <li class="spiral-text">Future-proof design that works with new devices</li>
+                </ul>
+            `,
+            'UI/UX Design': `
+                <p class="spiral-text">Our UI/UX design services focus on creating intuitive, engaging, and user-friendly digital experiences that delight your users.</p>
+                <p class="spiral-text">We combine aesthetics with functionality through:</p>
+                <ul>
+                    <li class="spiral-text">User research and persona development</li>
+                    <li class="spiral-text">Information architecture and wireframing</li>
+                    <li class="spiral-text">Interactive prototyping and usability testing</li>
+                    <li class="spiral-text">Visual design and brand consistency</li>
+                </ul>
+                <p class="spiral-text">The result is a digital product that not only looks beautiful but also provides a seamless user experience that keeps users coming back.</p>
+            `,
+            'Custom Web Applications': `
+                <p class="spiral-text">We develop tailor-made web applications that address your specific business challenges and requirements.</p>
+                <p class="spiral-text">Our development process includes:</p>
+                <ul>
+                    <li class="spiral-text">Thorough business analysis and requirements gathering</li>
+                    <li class="spiral-text">Custom architecture design and technology selection</li>
+                    <li class="spiral-text">Agile development with regular client feedback</li>
+                    <li class="spiral-text">Comprehensive testing and quality assurance</li>
+                    <li class="spiral-text">Deployment and ongoing support</li>
+                </ul>
+                <p class="spiral-text">From customer portals to inventory management systems, we build solutions that streamline your operations and drive business growth.</p>
+            `,
+            'Maintenance & Support': `
+                <p class="spiral-text">Our maintenance and support services ensure your website or application remains secure, up-to-date, and performing optimally at all times.</p>
+                <p class="spiral-text">Our comprehensive support includes:</p>
+                <ul>
+                    <li class="spiral-text">Regular security updates and vulnerability patching</li>
+                    <li class="spiral-text">Performance monitoring and optimization</li>
+                    <li class="spiral-text">Content updates and management</li>
+                    <li class="spiral-text">Technical support and issue resolution</li>
+                    <li class="spiral-text">Regular backups and disaster recovery planning</li>
+                </ul>
+                <p class="spiral-text">With our proactive maintenance approach, we identify and address potential issues before they impact your business.</p>
+            `,
+            'Web Security': `
+                <p class="spiral-text">We implement robust security measures to protect your website and user data from potential threats and vulnerabilities.</p>
+                <p class="spiral-text">Our web security services include:</p>
+                <ul>
+                    <li class="spiral-text">Security audits and vulnerability assessments</li>
+                    <li class="spiral-text">Implementation of SSL certificates and HTTPS</li>
+                    <li class="spiral-text">Protection against common attacks (XSS, CSRF, SQL injection)</li>
+                    <li class="spiral-text">Secure authentication and authorization systems</li>
+                    <li class="spiral-text">Data encryption and privacy compliance (GDPR, CCPA)</li>
+                    <li class="spiral-text">Regular security monitoring and incident response</li>
+                </ul>
+                <p class="spiral-text">We stay updated with the latest security best practices to ensure your digital assets remain protected in an evolving threat landscape.</p>
+            `,
+            'Development Process': `
+                <p class="spiral-text">Our comprehensive development process ensures high-quality results for every project:</p>
+
+                <h4 class="spiral-text">1. Discovery</h4>
+                <p class="spiral-text">We begin with in-depth discussions to understand your business goals, target audience, and project requirements. This phase includes market research, competitor analysis, and defining key performance indicators.</p>
+
+                <h4 class="spiral-text">2. Planning</h4>
+                <p class="spiral-text">We create a detailed project roadmap, including timeline, milestones, resource allocation, and technical specifications. This serves as our blueprint throughout the development process.</p>
+
+                <h4 class="spiral-text">3. Design</h4>
+                <p class="spiral-text">Our designers create wireframes and visual mockups that align with your brand identity and user expectations. We iterate based on your feedback until the design perfectly matches your vision.</p>
+
+                <h4 class="spiral-text">4. Development</h4>
+                <p class="spiral-text">Our development team brings the designs to life using clean, efficient code and cutting-edge technologies. We follow best practices for performance, security, and maintainability.</p>
+
+                <h4 class="spiral-text">5. Testing</h4>
+                <p class="spiral-text">We conduct thorough testing across different devices, browsers, and scenarios to ensure everything works flawlessly. This includes functional testing, performance testing, and security testing.</p>
+
+                <h4 class="spiral-text">6. Launch</h4>
+                <p class="spiral-text">We handle the deployment process with careful attention to detail, ensuring a smooth transition to the live environment with minimal downtime.</p>
+
+                <h4 class="spiral-text">7. Maintenance</h4>
+                <p class="spiral-text">After launch, we provide ongoing support and maintenance to keep your site running optimally. This includes regular updates, performance monitoring, and addressing any issues that arise.</p>
+            `
+        };
+
+        // Open modal with specific content
+        function openModal(title, content) {
+            modalTitle.textContent = title;
+            modalDescription.innerHTML = content;
+            modalContainer.classList.add('show');
+
+            // Trigger the spiral animation for each element
+            const spiralElements = document.querySelectorAll('.spiral-text');
+            spiralElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+                element.classList.add('animate');
+            });
+        }
+
+        // Close modal
+        function closeModal() {
+            modalContainer.classList.remove('show');
+        }
+
+        // Close modal when clicking the close button
+        closeButton.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside the modal content
+        modalContainer.addEventListener('click', function(event) {
+            if (event.target === modalContainer) {
+                closeModal();
+            }
+        });
+
+        // Add click event listeners to all "View More" buttons
+        document.querySelectorAll('.view-more').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                // Find the closest parent with service-card class or check if it's in the process section
+                const serviceCard = this.closest('.service-card');
+
+                if (serviceCard) {
+                    // For service cards, get the title from the card
+                    const serviceTitle = serviceCard.querySelector('.service-title').textContent;
+                    openModal(serviceTitle, serviceDetails[serviceTitle]);
+                } else {
+                    // For the process section
+                    openModal('Our Development Process', serviceDetails['Development Process']);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+
